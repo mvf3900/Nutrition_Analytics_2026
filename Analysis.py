@@ -1,17 +1,22 @@
 #### Nutrition Data Analysis from Jan 1 2026
 import pandas as pd
 
-# Since the file is in the SAME folder as this script,
-# we don't need the whole "C:\Users\..." path!
+# Intro
+# - Get and load data
 file_name = "Nutrition_Raw_Data_260322.csv"
-
-# Load the data
 df = pd.read_csv(file_name)
 
-# Let's see the first 3 days of your 2026 journey
+# - See the first 3 days
 print("--- January 1st Start ---")
 print(df.head(3))
 
-# Calculate your average calories so far
+# - Calculate average calories so far
 avg_cals = df['Calories'].mean()
-print(f"\nAverage Daily Intake: {avg_cals:.0f} kcal")
+print(f"\nAverage Daily Calories: {avg_cals:.0f} cal")
+
+# Data play
+# - Convert Date to type datetime
+df['Date'] = pd.to_datetime(df['Date'])
+
+monthly_avg = df.groupby(df['Date'].dt.month)[[
+    'Calories', 'Protein', 'Carbohydrate', 'Fat']].mean()
