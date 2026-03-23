@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="74ff9d48-759d-4648-8a58-58a686afd5c5" name="Changes" comment="Commit 2: Added dataframe of nutrient averages. Future: Get dataframe ready for visualizations.">
+    <list default="true" id="74ff9d48-759d-4648-8a58-58a686afd5c5" name="Changes" comment="Commit 3: Refined Monthly Average Data Table">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Analysis.py" beforeDir="false" afterPath="$PROJECT_DIR$/Analysis.py" afterDir="false" />
     </list>
@@ -121,12 +121,21 @@
       <option name="project" value="LOCAL" />
       <updated>1774221264608</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Commit 3: Refined Monthly Average Data Table">
+      <option name="closed" value="true" />
+      <created>1774300365825</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1774300365825</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial commit: Calculated Jan-March avg calories (1601 kcal)" />
     <MESSAGE value="Commit 2: Added dataframe of nutrient averages. Future: Get dataframe ready for visualizations." />
-    <option name="LAST_COMMIT_MESSAGE" value="Commit 2: Added dataframe of nutrient averages. Future: Get dataframe ready for visualizations." />
+    <MESSAGE value="Commit 3: Refined Monthly Average Data Table" />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit 3: Refined Monthly Average Data Table" />
   </component>
 </project>
