@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="74ff9d48-759d-4648-8a58-58a686afd5c5" name="Changes" comment="Commit 3: Refined Monthly Average Data Table">
+    <list default="true" id="74ff9d48-759d-4648-8a58-58a686afd5c5" name="Changes" comment="Commit 4: Created Weekly Average Data Table. Start Date: 2025-12-29.">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Analysis.py" beforeDir="false" afterPath="$PROJECT_DIR$/Analysis.py" afterDir="false" />
     </list>
@@ -129,13 +130,22 @@
       <option name="project" value="LOCAL" />
       <updated>1774300365825</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Commit 4: Created Weekly Average Data Table. Start Date: 2025-12-29.">
+      <option name="closed" value="true" />
+      <created>1774304000189</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1774304000189</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial commit: Calculated Jan-March avg calories (1601 kcal)" />
     <MESSAGE value="Commit 2: Added dataframe of nutrient averages. Future: Get dataframe ready for visualizations." />
     <MESSAGE value="Commit 3: Refined Monthly Average Data Table" />
-    <option name="LAST_COMMIT_MESSAGE" value="Commit 3: Refined Monthly Average Data Table" />
+    <MESSAGE value="Commit 4: Created Weekly Average Data Table. Start Date: 2025-12-29." />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit 4: Created Weekly Average Data Table. Start Date: 2025-12-29." />
   </component>
 </project>
