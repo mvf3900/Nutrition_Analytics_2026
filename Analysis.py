@@ -1,8 +1,10 @@
 #### Nutrition Data Analysis from Jan 1 2026
+
 import pandas as pd
-import matplotlib
-matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
+import matplotlib
+
+matplotlib.use('TkAgg')
 
 # Intro
 # - Get and load data
@@ -17,7 +19,8 @@ print(df.head(3))
 avg_cals = df['Calories'].mean()
 print(f"\nAverage Daily Calories: {avg_cals:.0f} cal")
 
-# Data play
+
+# Data play 1
 # - Convert Date to type datetime
 df['Date'] = pd.to_datetime(df['Date'])
 
@@ -30,7 +33,8 @@ month_order = ["January", "February", "March"]
 nutrition_categories = ["Calories", "Protein", "Carbohydrate", "Fat"]
 
 # - Group by months and get mean
-# -- .dt.month to get month from Date
+# -- dt.month() to get month from Date
+# -- reset_index() to lift back column headers
 monthly_avg = df.groupby('Month')[['Calories', 'Protein', 'Carbohydrate', 'Fat']].mean().reset_index()
 
 # - Order months
@@ -41,6 +45,7 @@ monthly_avg = monthly_avg.sort_values('Month').reset_index(drop=True)
 monthly_avg[nutrition_categories] = monthly_avg[nutrition_categories].round(0).astype(int)
 
 # print(monthly_avg) # Uncomment to see df
+
 
 # Data Play 2
 # - Reload data cause didn't change variable from data play 1
@@ -79,6 +84,7 @@ weekly_avg[nutrition_categories] = weekly_avg[nutrition_categories].round(0).ast
 
 # print(weekly_avg) # Uncomment to see df
 
+
 # Data Play 3
 # - Generate plot for weekly averages
 plt.figure(figsize=(8, 5))
@@ -91,9 +97,10 @@ plt.grid(True)
 # - Show plot
 plt.show()
 
+
 # Data Play 4
 # - Generate plot with calories and macros
-fig, ax1 = plt.subplots(figsize=(10,6))
+fig, ax1 = plt.subplots(figsize=(10, 6))
 ax2 = ax1.twinx()
 plt.rcParams["font.family"] = "serif"
 plt.rcParams["font.serif"] = ["Times New Roman"]
@@ -102,8 +109,7 @@ plt.rcParams["mathtext.fontset"] = "custom"
 plt.rcParams["mathtext.rm"] = "Times New Roman"
 
 # - Title
-plt.title('NUTRITION', fontname='Times New Roman', fontsize=16, weight = 'bold', loc = 'left', pad = 20)
-
+plt.title('NUTRITION', fontname='Times New Roman', fontsize=16, weight='bold', loc='left', pad=20)
 
 # - Get axis limits
 # -- For Calories
@@ -120,8 +126,8 @@ color_cal = 'black'
 ax1.set_xlabel("WEEK NUMBER", fontname='Times New Roman', fontsize=12)
 ax1.set_ylabel("CALORIES", fontname='Times New Roman', fontsize=12)
 ax1.plot(weekly_avg["Week_Number"], weekly_avg["Calories"],
-         label = "Calories", color = color_cal, linestyle = "-", alpha = 1)
-ax1.tick_params(axis = "y", labelcolor = color_cal)
+         label="Calories", color=color_cal, linestyle="-", alpha=1)
+ax1.tick_params(axis="y", labelcolor=color_cal)
 ax1.set_ylim(cal_min, cal_max)
 # -- Set X axis ticks
 weeks = weekly_avg["Week_Number"]
@@ -132,12 +138,12 @@ ax1.set_xticklabels(weeks)
 color_mac = 'tab:gray'
 ax2.set_ylabel("MACROS", fontname='Times New Roman', fontsize=12)
 ax2.plot(weekly_avg["Week_Number"], weekly_avg["Protein"],
-         label = "Protein", color = "tab:blue", linestyle = "-", alpha = 0.5)
+         label="Protein", color="tab:blue", linestyle="-", alpha=0.5)
 ax2.plot(weekly_avg["Week_Number"], weekly_avg["Carbohydrate"],
-         label = "Carbohydrate", color = "tab:green", linestyle = "-", alpha = 0.5)
+         label="Carbohydrate", color="tab:green", linestyle="-", alpha=0.5)
 ax2.plot(weekly_avg["Week_Number"], weekly_avg["Fat"],
-         label = "Fat", color = "tab:red", linestyle = "-", alpha = 0.5)
-ax2.tick_params(axis = "y", labelcolor = color_mac)
+         label="Fat", color="tab:red", linestyle="-", alpha=0.5)
+ax2.tick_params(axis="y", labelcolor=color_mac)
 ax2.set_ylim(macro_min, macro_max)
 
 # - Get and set legend info
@@ -149,9 +155,9 @@ ax1.legend(lines1 + lines2, labels1 + labels2, loc="upper left")
 # -- Grid and ticks
 ax1.tick_params(axis='both', which='major', labelsize=10)
 ax2.tick_params(axis='y', labelsize=10)
-ax1.grid(True, axis = "x", linestyle = ":", alpha = 0.6)
+ax1.grid(True, axis="x", linestyle=":", alpha=0.6)
 ax2.grid(False)
-fig.tight_layout() # Forces label in figure
+fig.tight_layout()  # Forces label in figure
 
 # - Show Plot
 plt.show()
