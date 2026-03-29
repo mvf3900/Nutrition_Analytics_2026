@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="74ff9d48-759d-4648-8a58-58a686afd5c5" name="Changes" comment="Commit 5: Data play 3 and 4. Need to clean up data play 4.">
+    <list default="true" id="74ff9d48-759d-4648-8a58-58a686afd5c5" name="Changes" comment="Commit 6: Script Refinement">
+      <change afterPath="$PROJECT_DIR$/Analysis_PUltimate.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Analysis.py" beforeDir="false" afterPath="$PROJECT_DIR$/Analysis.py" afterDir="false" />
     </list>
@@ -148,7 +149,15 @@
       <option name="project" value="LOCAL" />
       <updated>1774390459824</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Commit 6: Script Refinement">
+      <option name="closed" value="true" />
+      <created>1774472058704</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1774472058704</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -157,6 +166,7 @@
     <MESSAGE value="Commit 3: Refined Monthly Average Data Table" />
     <MESSAGE value="Commit 4: Created Weekly Average Data Table. Start Date: 2025-12-29." />
     <MESSAGE value="Commit 5: Data play 3 and 4. Need to clean up data play 4." />
-    <option name="LAST_COMMIT_MESSAGE" value="Commit 5: Data play 3 and 4. Need to clean up data play 4." />
+    <MESSAGE value="Commit 6: Script Refinement" />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit 6: Script Refinement" />
   </component>
 </project>
