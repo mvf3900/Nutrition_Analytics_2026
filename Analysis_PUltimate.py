@@ -118,8 +118,23 @@ class NutritionAnalyzer:
         print(f"Project Initialized: {len(self.df)} days loaded from {self.start_str} to {self.end_str}.\n")
 
     # Function to view averages
+    def show_summary(self):
+        print("--- SUMMARY ---")
+        # Calculating the mean for your core targets
+        stats = self.df[['Calories', 'Protein', 'Carbohydrate', 'Fat']].mean().round(0).astype(int)
+        print(stats)
+        print("-" * 30)
+
     # Function to view data
-    # Function to exclude dates
+    def show_data(self):
+        print("--- DATA ---")
+        print(self.df)
+        print("-" * 30)
+
+    # Function to break data
+    def break_date(self, r1_end, r2_start):
+
+
     # Function to specify nutrition
 
 
@@ -142,18 +157,20 @@ if analyzer_starter == 'y':
         print("--- Analyzer Menu ---")
         print("1. View Average(s)")
         print("2. View Raw Data")
-        #print("3. Exclude Dates")
-        #print("4. Specify Nutrition")
+        print("3. Break Date")
         print("0. Exit")
 
         choice = input("Select an option: ")
 
         if choice == '1':
-            analysis.
+            analysis.show_summary()
         elif choice == '2':
-            analysis.
-        #elif choice == '3':
-        #    analysis.
+            analysis.show_data()
+        elif choice == '3':
+            print(f"Current data runs from {analysis.start_str} - {analysis.end_str}")
+            range1_end = input("Enter Range-1 End Date (MM/DD/YYYY): ")
+            range2_start = input("Enter Range-2 Start Date (MM/DD/YYYY): ")
+            analysis.break_date(range1_end, range2_start)
         elif choice == '0':
             print("Exiting Menu...")
             break
