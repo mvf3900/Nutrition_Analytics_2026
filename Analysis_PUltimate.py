@@ -8,7 +8,7 @@ import matplotlib
 
 matplotlib.use('TkAgg')
 
-# Intro
+# INTRO
 # - Get and load data
 file_name = "Nutrition_Raw_Data_260329.csv"
 df = pd.read_csv(file_name)
@@ -16,7 +16,7 @@ df = pd.read_csv(file_name)
 df.head(5)
 df.tail(5)
 
-# Data Management 1
+# DATA MANAGEMENT 1
 # - Convert date dividers
 df['Date'] = pd.to_datetime(df['Date'], format='%m/%d/%Y')
 
@@ -26,7 +26,7 @@ start_date = pd.to_datetime("2025-12-29")
 # - Add column that gives week number
 df["Week_Number"] = ((df["Date"] - start_date).dt.days // 7) + 1
 
-# Data Management 2
+# DATA MANAGEMENT 2
 # - Define Nutrition categories
 nutrition_categories = ["Calories", "Protein", "Carbohydrate", "Fat"]
 
@@ -37,9 +37,9 @@ weekly_avg = df.groupby("Week_Number")[nutrition_categories].mean().round(0).ast
 
 # - Save data to CSV
 # -- index=False prevents index noise in CSV
-weekly_avg.to_csv("weekly_nutrition_summary_PUltimate.csv", index=False)
+# weekly_avg.to_csv("weekly_nutrition_summary_PUltimate.csv", index=False)
 
-# Visualization 1
+# VISUALIZATION 1
 # - 1. Set Global Style
 plt.rcParams.update({
     "font.family": "serif",
@@ -89,9 +89,77 @@ ax1.grid(axis="x", linestyle=":", alpha=0.6)
 fig.tight_layout()
 
 # - 8. Save plot
-plt.savefig("nutrition_trends_W13.png", dpi=300, bbox_inches='tight')
+# plt.savefig("nutrition_trends_W13.png", dpi=300, bbox_inches='tight')
 # plt.close()
 
 # - 9. Show plot instead of save
-plt.show()
+# plt.show()
+
+
+# NUTRITION ANALYZER
+# - Analyze by user start and end date
+class NutritionAnalyzer:
+    # Initialize user dataframe
+    def __init__(self, analyzer_start, analyzer_end):
+        # 1. Load original dataframe
+        analyzer_df = df.copy()
+
+        # 2. Set user boundaries
+        self.start = pd.to_datetime(analyzer_start, format='%m/%d/%Y')
+        self.end = pd.to_datetime(analyzer_end, format='%m/%d/%Y')
+        # - Boundaries kept as string
+        self.start_str = self.start.strftime('%m/%d/%Y')
+        self.end_str = self.end.strftime('%m/%d/%Y')
+
+        # 3. Create the "Scoped" Dataframe
+        self.df = analyzer_df[(analyzer_df['Date'] >= self.start) & (analyzer_df['Date'] <= self.end)].copy()
+
+        # 4. Check initializer
+        print(f"Project Initialized: {len(self.df)} days loaded from {self.start_str} to {self.end_str}.\n")
+
+    # Function to view averages
+    # Function to view data
+    # Function to exclude dates
+    # Function to specify nutrition
+
+
+
+# INTERACTIVE CONSOLE
+# - Start interaction
+print("--- Nutrition Analyzer ---")
+analyzer_starter = input("Would you like to analyze a timeframe? (y/n): ").lower()
+
+if analyzer_starter == 'y':
+    # 1. Receive dates for analysis
+    start = input("Start Date (MM/DD/YYYY): ")
+    end = input("End Date (MM/DD/YYYY): ")
+
+    # - Initialize analyzer
+    analysis = NutritionAnalyzer(start, end)
+
+    # 2. Provide analyzer options
+    while True:
+        print("--- Analyzer Menu ---")
+        print("1. View Average(s)")
+        print("2. View Raw Data")
+        #print("3. Exclude Dates")
+        #print("4. Specify Nutrition")
+        print("0. Exit")
+
+        choice = input("Select an option: ")
+
+        if choice == '1':
+            analysis.
+        elif choice == '2':
+            analysis.
+        #elif choice == '3':
+        #    analysis.
+        elif choice == '0':
+            print("Exiting Menu...")
+            break
+        else:
+            print("Invalid selection. Try again.")
+
+else:
+    print("Session Terminated.")
 
