@@ -113,29 +113,83 @@ class NutritionAnalyzer:
 
         # 3. Create the "Scoped" Dataframe
         self.df = analyzer_df[(analyzer_df['Date'] >= self.start) & (analyzer_df['Date'] <= self.end)].copy()
+        self.df_holder = self.df.copy()
 
         # 4. Check initializer
         print(f"Project Initialized: {len(self.df)} days loaded from {self.start_str} to {self.end_str}.\n")
 
     # Function to view averages
-    def show_summary(self):
+    def show_summary(self, dfs_to_view):
         print("--- SUMMARY ---")
-        # Calculating the mean for your core targets
-        stats = self.df[['Calories', 'Protein', 'Carbohydrate', 'Fat']].mean().round(0).astype(int)
-        print(stats)
+        for i, dataframe in enumerate(dfs_to_view):
+            # 1. Identify Range
+            start_date = dataframe['Date'].iloc[0].strftime('%m/%d/%Y')
+            end_date = dataframe['Date'].iloc[-1].strftime('%m/%d/%Y')
+
+            print(f"Range {i + 1}: {start_date} to {end_date}")
+
+            # 2. Calculate and Print Stats
+            stats = dataframe[['Calories', 'Protein', 'Carbohydrate', 'Fat']].mean().round(0).astype(int)
+            print(stats)
+            print("-" * 15)
         print("-" * 30)
 
     # Function to view data
-    def show_data(self):
+    def show_data(self, dfs_to_view):
         print("--- DATA ---")
-        print(self.df)
+        for i, dataframe in enumerate(dfs_to_view):
+            start_date = dataframe['Date'].iloc[0].strftime('%m/%d/%Y')
+            end_date = dataframe['Date'].iloc[-1].strftime('%m/%d/%Y')
+
+            print(f"Dataset {i + 1} ({start_date} - {end_date}):")
+            print(dataframe)
+            print("-" * 20)
         print("-" * 30)
 
     # Function to break data
     def break_date(self, r1_end, r2_start):
+        # 1. Convert inputs to datetime objects
+        r1_end_dt = pd.to_datetime(r1_end, format='%m/%d/%Y')
+        r2_start_dt = pd.to_datetime(r2_start, format='%m/%d/%Y')
+
+        # 2. Slice the main dataframe into two segments
+        # - Range 1:  Original start to new split point
+        self.df_range1 = self.df[self.df['Date'] <= r1_end_dt].copy()
+        # -- String Range 1
+        self.df_range1_start_str = self.df_range1['Date'].iloc[0].strftime('%m/%d/%Y')
+        self.df_range1_end_str = self.df_range1['Date'].iloc[-1].strftime('%m/%d/%Y')
+
+        # - Range 2: New second start point to original end
+        self.df_range2 = self.df[self.df['Date'] >= r2_start_dt].copy()
+        # -- String Range 2
+        self.df_range2_start_str = self.df_range2['Date'].iloc[0].strftime('%m/%d/%Y')
+        self.df_range2_end_str = self.df_range2['Date'].iloc[-1].strftime('%m/%d/%Y')
+
+        # 3. Verification
+        print(f"\n--- DATA SPLIT COMPLETE ---")
+        print(f"Range 1: {len(self.df_range1)} days ("
+              f"{self.df_range1_start_str} - {self.df_range1_end_str})")
+        print(f"Range 2: {len(self.df_range2)} days ("
+              f"{self.df_range2_start_str} - {self.df_range2_end_str})")
+        print("-" * 30 + "\n")
+
+    # Function to reset data
+    def reset_data(self):
+        self.df = self.df_holder.copy()
+
+        # Clean up the broken ranges so Choice 1 goes back to 'Single View'
+        if hasattr(self, 'df_range1'):
+            del self.df_range1
+            del self.df_range2
+
+        original_start = self.df['Date'].iloc[0].strftime('%m/%d/%Y')
+        original_end = self.df['Date'].iloc[-1].strftime('%m/%d/%Y')
+
+        print("\n--- DATA RESET ---")
+        print(f"Dataframe restored to original scope: {original_start} - {original_end}")
+        print("-" * 30 + "\n")
 
 
-    # Function to specify nutrition
 
 
 
@@ -146,8 +200,10 @@ analyzer_starter = input("Would you like to analyze a timeframe? (y/n): ").lower
 
 if analyzer_starter == 'y':
     # 1. Receive dates for analysis
-    start = input("Start Date (MM/DD/YYYY): ")
-    end = input("End Date (MM/DD/YYYY): ")
+    #start = input("Start Date (MM/DD/YYYY): ")
+    #end = input("End Date (MM/DD/YYYY): ")
+    start = "01/09/2026"
+    end = "03/09/2026"
 
     # - Initialize analyzer
     analysis = NutritionAnalyzer(start, end)
@@ -157,20 +213,33 @@ if analyzer_starter == 'y':
         print("--- Analyzer Menu ---")
         print("1. View Average(s)")
         print("2. View Raw Data")
-        print("3. Break Date")
+        print("3. Break Dates")
+        print("9. Reset Data")
         print("0. Exit")
 
         choice = input("Select an option: ")
 
         if choice == '1':
-            analysis.show_summary()
+            if choice == '1':
+                # 1. Check if the broken ranges actually exist in the class yet
+                if hasattr(analysis, 'df_range1') and hasattr(analysis, 'df_range2'):
+                    # Send the list of broken ranges
+                    analysis.show_summary([analysis.df_range1, analysis.df_range2])
+                else:
+                    # Send the single main dataframe in a list
+                    analysis.show_summary([analysis.df])
         elif choice == '2':
-            analysis.show_data()
+            if hasattr(analysis, 'df_range1'):
+                analysis.show_data([analysis.df_range1, analysis.df_range2])
+            else:
+                analysis.show_data([analysis.df])
         elif choice == '3':
             print(f"Current data runs from {analysis.start_str} - {analysis.end_str}")
             range1_end = input("Enter Range-1 End Date (MM/DD/YYYY): ")
             range2_start = input("Enter Range-2 Start Date (MM/DD/YYYY): ")
             analysis.break_date(range1_end, range2_start)
+        elif choice == '9':
+            analysis.reset_data()
         elif choice == '0':
             print("Exiting Menu...")
             break

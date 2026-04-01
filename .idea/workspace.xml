@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="74ff9d48-759d-4648-8a58-58a686afd5c5" name="Changes" comment="Commit 8: Interactive analyzer part 1.">
+    <list default="true" id="74ff9d48-759d-4648-8a58-58a686afd5c5" name="Changes" comment="Commit 9: Interactive analyzer part 2.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Analysis_PUltimate.py" beforeDir="false" afterPath="$PROJECT_DIR$/Analysis_PUltimate.py" afterDir="false" />
     </list>
@@ -184,6 +184,7 @@
     <MESSAGE value="Commit 6: Script Refinement" />
     <MESSAGE value="Commit 7: Created Analysis_PUltimate.py. Includes Penultimate data, weekly average CSV file, and cleaner visualization script." />
     <MESSAGE value="Commit 8: Interactive analyzer part 1." />
-    <option name="LAST_COMMIT_MESSAGE" value="Commit 8: Interactive analyzer part 1." />
+    <MESSAGE value="Commit 9: Interactive analyzer part 2." />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit 9: Interactive analyzer part 2." />
   </component>
 </project>
