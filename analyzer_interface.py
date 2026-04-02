@@ -27,10 +27,10 @@ df["Week_Number"] = ((df["Date"] - start_date).dt.days // 7) + 1
 print("-" * 5 + " NUTRITION ANALYZER " + "-" * 5)
 
 # - Provide date range
-# user_start_date = input("Start Date (MM/DD/YYYY): ")
-# user_end_date = input("Start Date (MM/DD/YYYY): ")
-user_start_date = "01/09/2026"
-user_end_date = "03/09/2026"
+user_start_date = input("Start Date (MM/DD/YYYY): ")
+user_end_date = input("Start Date (MM/DD/YYYY): ")
+#user_start_date = "01/09/2026"
+#user_end_date = "03/09/2026"
 
 # - Initialize analyzer
 analysis = NutritionAnalyzer(user_start_date, user_end_date, df)
@@ -42,6 +42,7 @@ while True:
     print("1. View Average(s)")
     print("2. View Raw Data")
     print("3. Break Dates")
+    print("4. Remove Outliers")
     print("9. Reset Data")
     print("0. Exit")
 
@@ -73,6 +74,34 @@ while True:
 
         # - Send dates for further analysis
         analysis.break_date(range1_end, range2_start)
+    elif choice == '4':
+        # Remove nutrition outliers
+        # - Map choices
+        nutrition_map = {'A': 'Calories', 'B': 'Protein',
+                         'C': 'Carbohydrate', 'D': "Fat"}
+        direction_map = {'A': 'Above', 'B': 'Below'}
+
+        # - Receive nutrition and outlier amount
+        n_choice = input("Enter nutrition selection: "
+                         "\n(A) Calories"
+                         "\n(B) Protein"
+                         "\n(C) Carbohydrate"
+                         "\n(D) Fat")
+        t_choice = input("Enter threshold amount: ")
+        d_choice = input("Enter removal direction: "
+                         "\n(A) Above"
+                         "\n(B) Below")
+
+        # - Send user selections
+        if n_choice in nutrition_map and d_choice in direction_map:
+            selected_n = nutrition_map[n_choice]
+            selected_d = direction_map[d_choice]
+            selected_t = float(t_choice)
+
+            analysis.remove_outliers(selected_n, selected_t, selected_d)
+        else:
+            print("Invalid selection. Aborting filter.")
+
     elif choice == '9':
         # Reset dataframe to original inputs
         analysis.reset_data()
@@ -82,5 +111,3 @@ while True:
         break
     else:
         print("Invalid selection. Try again.")
-
-

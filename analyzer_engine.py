@@ -79,6 +79,47 @@ class NutritionAnalyzer:
         print(f"Range 2: {len(self.df_range2)} days | {range2_str}")
         print("-" * 30)
 
+    # Function: Remove outliers
+    def remove_outliers(self, nutrition, threshold, direction):
+        # 1. Create list of all current dataframes
+        # - Start with main
+        targets = [('df', self.df)]
+
+        # - Check for split ranges
+        if hasattr(self, 'df_range1'):
+            targets.append(('df_range1', self.df_range1))
+        if hasattr(self, 'df_range2'):
+            targets.append(('df_range2', self.df_range2))
+
+        # 2. Filter user selections
+        # - State user filtering selections
+        print(f"FILTERING: {direction} {threshold} in {nutrition}")
+
+        # - Filter by user selections
+        for i, (name, dataframe) in enumerate(targets):
+            # - Get initial amount of days
+            initial_len = len(dataframe)
+
+            # - Filter selections
+            if direction == "Above":
+                cleaned = dataframe[dataframe[nutrition] <= threshold].copy()
+            else:
+                cleaned = dataframe[dataframe[nutrition] >= threshold].copy()
+
+            # - Re-assign cleaned version to class attribute
+            setattr(self, name, cleaned)
+
+            # - Retrieve days removed
+            excluded = initial_len - len(cleaned)
+
+            # - Get date string
+            range_str = self._get_date_range_str(cleaned)
+
+            # - State filtering product
+            print(f"Dataset {i + 1} ({range_str}): Removed {excluded} days. ({len(cleaned)} remaining)")
+
+        print("-" * 30)
+
     # Function: Reset data
     def reset_data(self):
         # 1. Retrieve original dataset
