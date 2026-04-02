@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="74ff9d48-759d-4648-8a58-58a686afd5c5" name="Changes" comment="Commit 9: Interactive analyzer part 2.">
+    <list default="true" id="74ff9d48-759d-4648-8a58-58a686afd5c5" name="Changes" comment="Commit 10: Interactive analyzer part 3.">
+      <change afterPath="$PROJECT_DIR$/analyzer_engine.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/analyzer_interface.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Analysis_PUltimate.py" beforeDir="false" afterPath="$PROJECT_DIR$/Analysis_PUltimate.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,6 +22,12 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PUSH_TAGS">
+      <GitPushTagMode>
+        <option name="argument" value="--tags" />
+        <option name="title" value="All" />
+      </GitPushTagMode>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -42,7 +49,9 @@
   &quot;associatedIndex&quot;: 5
 }</component>
   <component name="ProjectId" id="3BJjH5S6AMaIOblHm1Nu0IoNcRr" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -172,7 +181,15 @@
       <option name="project" value="LOCAL" />
       <updated>1774976234848</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Commit 10: Interactive analyzer part 3.">
+      <option name="closed" value="true" />
+      <created>1775080981926</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1775080981926</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -185,6 +202,7 @@
     <MESSAGE value="Commit 7: Created Analysis_PUltimate.py. Includes Penultimate data, weekly average CSV file, and cleaner visualization script." />
     <MESSAGE value="Commit 8: Interactive analyzer part 1." />
     <MESSAGE value="Commit 9: Interactive analyzer part 2." />
-    <option name="LAST_COMMIT_MESSAGE" value="Commit 9: Interactive analyzer part 2." />
+    <MESSAGE value="Commit 10: Interactive analyzer part 3." />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit 10: Interactive analyzer part 3." />
   </component>
 </project>
