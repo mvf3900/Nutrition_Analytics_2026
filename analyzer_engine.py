@@ -19,9 +19,11 @@ class NutritionAnalyzer:
         self.end_str = self.end.strftime('%m/%d/%Y')
 
         # Initialize dataframe
-        # - Also include holder for data reset
+        # - Include holder for data reset
+        # - Include sub range list for multiple datasets
         self.df = dataframe[(dataframe['Date'] >= self.start) & (dataframe['Date'] <= self.end)].copy()
         self.df_holder = self.df.copy()
+        self.sub_ranges = []
 
     # Helper: Get date range string of dataframes
     def _get_date_range_str(self, dataframe):
@@ -30,8 +32,12 @@ class NutritionAnalyzer:
         return f"{start} - {end}"
 
     # Function: Show summary (averages) of data
-    def show_summary(self, dfs_to_view):
+    def show_summary(self):
         print("-" * 5 + " SUMMARY " + "-" * 5)
+
+        # - Utilize dataframe(s)
+        dfs_to_view = self.sub_ranges if self.sub_ranges else [self.df]
+
         for i, dataframe in enumerate(dfs_to_view):
             # 1. Identify range
             range_str = self._get_date_range_str(dataframe)
@@ -44,8 +50,12 @@ class NutritionAnalyzer:
         print("-" * 30)
 
     # Function: Show raw data
-    def show_data(self, dfs_to_view):
+    def show_data(self):
         print("-" * 5 + " DATA " + "-" * 5)
+
+        # - Utilize dataframe(s)
+        dfs_to_view = self.sub_ranges if self.sub_ranges else [self.df]
+
         for i, dataframe in enumerate(dfs_to_view):
             # 1. Identify range
             range_str = self._get_date_range_str(dataframe)
@@ -57,46 +67,49 @@ class NutritionAnalyzer:
         print("-" * 30)
 
     # Function: Break data
-    def break_date(self, r1_end, r2_start):
-        # 1. Convert inputs to datetime objects
-        r1_end_dt = pd.to_datetime(r1_end, format='%m/%d/%Y')
-        r2_start_dt = pd.to_datetime(r2_start, format='%m/%d/%Y')
+    def break_date(self, date_list):
+        self.sub_ranges = []
 
-        # 2. Slice the main dataframe into two segments
-        # - Range 1:  Original start to new split point
-        self.df_range1 = self.df[self.df['Date'] <= r1_end_dt].copy()
-        # -- String Range 1
-        range1_str = self._get_date_range_str(self.df_range1)
+        # Check and format user date list
+        for date_list_str in date_list:
+            try:
+                # Split the string by the hyphen
+                start_str, end_str = date_list_str.split(" - ")
 
-        # - Range 2: New second start point to original end
-        self.df_range2 = self.df[self.df['Date'] >= r2_start_dt].copy()
-        # -- String Range 2
-        range2_str = self._get_date_range_str(self.df_range2)
+                # Convert to datetime
+                r_start = pd.to_datetime(start_str.strip(), format='%m/%d/%Y')
+                r_end = pd.to_datetime(end_str.strip(), format='%m/%d/%Y')
+
+                new_range = self.df[(self.df['Date'] >= r_start) & (self.df['Date'] <= r_end)].copy()
+
+                if not new_range.empty:
+                    self.sub_ranges.append(new_range)
+                    print(f"Added Range: {self._get_date_range_str(new_range)}")
+                else:
+                    print(f"Warning: No data found for {date_list_str}")
+            except Exception as e:
+                print(f"Error parsing '{date_list_str}': {e}. Use format MM/DD/YYYY - MM/DD/YYYY")
+
+        print(f"Total Sub-ranges Created: {len(self.sub_ranges)}")
 
         # 3. Verification
         print("-" * 5 + " DATA SPLIT COMPLETE " + "-" * 5)
-        print(f"Range 1: {len(self.df_range1)} days | {range1_str}")
-        print(f"Range 2: {len(self.df_range2)} days | {range2_str}")
+        for i, dataframe in enumerate(self.sub_ranges):
+            range_str = self._get_date_range_str(dataframe)
+            print(f"Range {i + 1}: {len(dataframe)} days | {range_str}")
         print("-" * 30)
 
     # Function: Remove outliers
     def remove_outliers(self, nutrition, threshold, direction):
-        # 1. Create list of all current dataframes
-        # - Start with main
-        targets = [('df', self.df)]
-
-        # - Check for split ranges
-        if hasattr(self, 'df_range1'):
-            targets.append(('df_range1', self.df_range1))
-        if hasattr(self, 'df_range2'):
-            targets.append(('df_range2', self.df_range2))
-
-        # 2. Filter user selections
-        # - State user filtering selections
+        # 1. State user filtering selections
         print(f"FILTERING: {direction} {threshold} in {nutrition}")
 
+        # 2. Filter dataframes
+        # - Utilize a list of dataframes
+        dfs_to_view = self.sub_ranges if self.sub_ranges else [self.df]
+
         # - Filter by user selections
-        for i, (name, dataframe) in enumerate(targets):
+        for i, dataframe in enumerate(dfs_to_view):
             # - Get initial amount of days
             initial_len = len(dataframe)
 
@@ -106,8 +119,8 @@ class NutritionAnalyzer:
             else:
                 cleaned = dataframe[dataframe[nutrition] >= threshold].copy()
 
-            # - Re-assign cleaned version to class attribute
-            setattr(self, name, cleaned)
+            # - Re-assign cleaned data
+            self.sub_ranges[i] = cleaned
 
             # - Retrieve days removed
             excluded = initial_len - len(cleaned)
@@ -124,11 +137,7 @@ class NutritionAnalyzer:
     def reset_data(self):
         # 1. Retrieve original dataset
         self.df = self.df_holder.copy()
-
-        # 2. Clean up the broken ranges
-        if hasattr(self, 'df_range1'):
-            del self.df_range1
-            del self.df_range2
+        self.sub_ranges = []
 
         # 3. Retrieve and print range
         range_str = self._get_date_range_str(self.df)

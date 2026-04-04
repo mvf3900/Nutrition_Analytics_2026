@@ -51,29 +51,23 @@ while True:
 
     # - Respond to user selection
     if choice == '1':
-        # Show averages of datasets
-        if hasattr(analysis, 'df_range1') and hasattr(analysis, 'df_range2'):
-            # - Send list of broken ranges
-            analysis.show_summary([analysis.df_range1, analysis.df_range2])
-        else:
-            # - Send list of single range
-            analysis.show_summary([analysis.df])
+        analysis.show_summary()
     elif choice == '2':
-        # Show raw datasets
-        if hasattr(analysis, 'df_range1'):
-            analysis.show_data([analysis.df_range1, analysis.df_range2])
-        else:
-            analysis.show_data([analysis.df])
+        analysis.show_data()
     elif choice == '3':
         # Break dataframe by multiple ranges
         print(f"Current data runs from {analysis.start_str} - {analysis.end_str}")
 
-        # - Receive user date breaks
-        range1_end = input("Enter Range-1 End Date (MM/DD/YYYY): ")
-        range2_start = input("Enter Range-2 Start Date (MM/DD/YYYY): ")
+        # - Receive user date ranges
+        split_dates = []
+        while True:
+            d = input("Enter date range (MM/DD/YYYY - MM/DD/YYYY) or 'done': ")
+            if d == 'done':
+                break
+            split_dates.append(d)
 
         # - Send dates for further analysis
-        analysis.break_date(range1_end, range2_start)
+        analysis.break_date(split_dates)
     elif choice == '4':
         # Remove nutrition outliers
         # - Map choices
