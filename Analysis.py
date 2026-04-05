@@ -8,7 +8,7 @@ matplotlib.use('TkAgg')
 
 # Intro
 # - Get and load data
-file_name = "Nutrition_Raw_Data_260322.csv"
+file_name = "data/Nutrition_Raw_Data_260322.csv"
 df = pd.read_csv(file_name)
 
 # - See the first 3 days

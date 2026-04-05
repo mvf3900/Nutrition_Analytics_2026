@@ -10,7 +10,7 @@ matplotlib.use('TkAgg')
 
 # INTRO
 # - Get and load data
-file_name = "Nutrition_Raw_Data_260329.csv"
+file_name = "data/Nutrition_Raw_Data_260329.csv"
 df = pd.read_csv(file_name)
 
 df.head(5)
