@@ -27,10 +27,10 @@ df["Week_Number"] = ((df["Date"] - start_date).dt.days // 7) + 1
 print("-" * 5 + " NUTRITION ANALYZER " + "-" * 5)
 
 # - Provide date range
-user_start_date = input("Start Date (MM/DD/YYYY): ")
-user_end_date = input("End Date (MM/DD/YYYY): ")
-#user_start_date = "01/09/2026"
-#user_end_date = "03/09/2026"
+#user_start_date = input("Start Date (MM/DD/YYYY): ")
+#user_end_date = input("End Date (MM/DD/YYYY): ")
+user_start_date = "01/01/2026"
+user_end_date = "03/29/2026"
 
 # - Initialize analyzer
 analysis = NutritionAnalyzer(user_start_date, user_end_date, df)
@@ -43,6 +43,7 @@ while True:
     print("2. View Raw Data")
     print("3. Break Dates")
     print("4. Remove Outliers")
+    print("5. Plot Averages (Bar)")
     print("9. Reset Data")
     print("0. Exit")
 
@@ -98,7 +99,8 @@ while True:
             analysis.remove_outliers(selected_n, selected_t, selected_d)
         else:
             print("Invalid selection. Aborting filter.")
-
+    elif choice == '5':
+        analysis.plot_averages()
     elif choice == '9':
         # Reset dataframe to original inputs
         analysis.reset_data()

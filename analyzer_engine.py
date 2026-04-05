@@ -4,6 +4,16 @@
 #### - Contains NutritionAnalyzer
 
 import pandas as pd
+import matplotlib.pyplot as plt
+import matplotlib
+
+# Set environment and style for graphs
+matplotlib.use('TkAgg')
+plt.rcParams.update({
+    "font.family": "serif",
+    "font.serif": ["Times New Roman"],
+    "font.size": 10
+})
 
 
 # Create analyzer functions
@@ -143,6 +153,83 @@ class NutritionAnalyzer:
             print(f"Dataset {i + 1} ({range_str}): Removed {excluded} days ({len(cleaned)} remaining).")
 
         print("-" * 30)
+
+    # Function: Plot averages
+    def plot_averages(self):
+        # 1. Identify which data to use
+        dfs_to_view = self.sub_ranges if self.sub_ranges else[self.df]
+        macro_cats = ['Protein', 'Carbohydrate', 'Fat']
+
+        # 2. Setup figure, internal values, and initial aes
+        # - Internal values
+        bar_width = 0.15
+        center_offset = ((len(dfs_to_view) - 1) * bar_width) / 2
+        current_cal_max = 0
+        current_macro_max = 0
+
+        # - Initial aes
+        cmap = plt.get_cmap('GnBu')
+        colors = [cmap(i) for i in [0.4, 0.6, 0.8, 0.9]]
+
+        # - Figure
+        fig, ax1 = plt.subplots(figsize=(10, 6))
+        ax2 = ax1.twinx()
+
+        # 3. Calculate and plot
+        for i, dataframe in enumerate(dfs_to_view):
+            if dataframe.empty:
+                continue
+
+            # - Get date ranges and color dataframes
+            range_label = self._get_date_range_str(dataframe)
+            color = colors[i % len(colors)]
+
+            # - Calories plot
+            cal_val = dataframe['Calories'].mean()
+            ax1.bar(0 + (i * bar_width), cal_val, width=bar_width,
+                    label=range_label, color=color, alpha=0.8, edgecolor='black', linewidth=0.5)
+
+            # - Macros plot
+            macro_vals = dataframe[macro_cats].mean()
+            x_macros = [1.5 + j + (i * bar_width) for j in range(len(macro_cats))]
+            ax2.bar(x_macros, macro_vals, width=bar_width,
+                    color=color, alpha=0.7, edgecolor='black', linewidth=0.5)
+
+            # - Track max Y-lim
+            current_cal_max = max(current_cal_max, cal_val)
+            current_macro_max = max(current_macro_max, macro_vals.max())
+        # 4. Style plot
+        # - Divider
+        plt.axvline(x=0.75, color='black', linestyle='-', linewidth=1.5)
+        # - Calories plot
+        ax1.set_ylabel("CALORIES (kcal)", weight='bold')
+        ax1.set_ylim(0, current_cal_max.max() * 1.3)
+        # - Macros plot
+        ax2.set_ylabel("MACROS (grams)", weight='bold', color='dimgray')
+        ax2.set_ylim(0, current_macro_max * 1.1)
+        # - Global Format
+        tick_positions = [
+            0 + center_offset,  # Calories center
+            1.5 + center_offset,  # Protein center
+            2.5 + center_offset,  # Carbs center
+            3.5 + center_offset  # Fat center
+        ]
+        ax1.set_xticks(tick_positions)
+        ax1.set_xticklabels(['CALORIES', 'PROTEIN', 'CARB', 'FAT'], weight='bold')
+
+        plt.title('NUTRITION COMPOSITION | CALORIES & MACROS', loc='left',
+                  fontsize=14, weight='bold', pad=20)
+
+        # - Grid and Cleanup
+        ax1.grid(axis='y', linestyle=':', alpha=0.3)
+        ax1.legend(loc='upper left', frameon=True, fontsize='small', title="Date Ranges")
+        plt.tight_layout()
+
+        # 5. Print figure
+        plt.show(block=False)
+        plt.pause(0.1)
+        plt.gcf().canvas.draw_idle()
+        plt.gcf().canvas.flush_events()
 
     # Function: Reset data
     def reset_data(self):
