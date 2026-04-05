@@ -71,20 +71,23 @@ while True:
     elif choice == '4':
         # Remove nutrition outliers
         # - Map choices
-        nutrition_map = {'A': 'Calories', 'B': 'Protein',
-                         'C': 'Carbohydrate', 'D': "Fat"}
-        direction_map = {'A': 'Above', 'B': 'Below'}
+        nutrition_map = {'1': 'Calories',
+                         '2': 'Protein',
+                         '3': 'Carbohydrate',
+                         '4': "Fat"}
+        direction_map = {'1': 'Above',
+                         '2': 'Below'}
 
         # - Receive nutrition and outlier amount
         n_choice = input("Enter nutrition selection: "
-                         "\n(A) Calories"
-                         "\n(B) Protein"
-                         "\n(C) Carbohydrate"
-                         "\n(D) Fat")
+                         "\n1. Calories"
+                         "\n2. Protein"
+                         "\n3. Carbohydrate"
+                         "\n4. Fat\n")
         t_choice = input("Enter threshold amount: ")
         d_choice = input("Enter removal direction: "
-                         "\n(A) Above"
-                         "\n(B) Below")
+                         "\n1. Above"
+                         "\n2. Below\n")
 
         # - Send user selections
         if n_choice in nutrition_map and d_choice in direction_map:

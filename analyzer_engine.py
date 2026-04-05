@@ -27,6 +27,8 @@ class NutritionAnalyzer:
 
     # Helper: Get date range string of dataframes
     def _get_date_range_str(self, dataframe):
+        if dataframe.empty:
+            return "No Data"
         start = dataframe['Date'].iloc[0].strftime('%m/%d/%Y')
         end = dataframe['Date'].iloc[-1].strftime('%m/%d/%Y')
         return f"{start} - {end}"
@@ -104,20 +106,29 @@ class NutritionAnalyzer:
         # 1. State user filtering selections
         print(f"FILTERING: {direction} {threshold} in {nutrition}")
 
-        # 2. Filter dataframes
-        # - Utilize a list of dataframes
-        dfs_to_view = self.sub_ranges if self.sub_ranges else [self.df]
+        # 2. Filter main dataframe
+        initial_df_len = len(self.df)
+        if direction == "Above":
+            self.df = self.df[self.df[nutrition] <= threshold].copy()
+        else:
+            self.df = self.df[self.df[nutrition] >= threshold].copy()
 
+        if not self.sub_ranges:
+            excluded = initial_df_len - len(self.df)
+            range_str = self._get_date_range_str(self.df)
+            print(f"Main Dataset ({range_str}): Removed {excluded} days ({len(self.df)} remaining).")
+
+        # 3. Filter sub-range dataframes
         # - Filter by user selections
-        for i, dataframe in enumerate(dfs_to_view):
+        for i in range(len(self.sub_ranges)):
             # - Get initial amount of days
-            initial_len = len(dataframe)
+            initial_len = len(self.sub_ranges[i])
 
             # - Filter selections
             if direction == "Above":
-                cleaned = dataframe[dataframe[nutrition] <= threshold].copy()
+                cleaned = self.sub_ranges[i][self.sub_ranges[i][nutrition] <= threshold].copy()
             else:
-                cleaned = dataframe[dataframe[nutrition] >= threshold].copy()
+                cleaned = self.sub_ranges[i][self.sub_ranges[i][nutrition] >= threshold].copy()
 
             # - Re-assign cleaned data
             self.sub_ranges[i] = cleaned
@@ -129,7 +140,7 @@ class NutritionAnalyzer:
             range_str = self._get_date_range_str(cleaned)
 
             # - State filtering product
-            print(f"Dataset {i + 1} ({range_str}): Removed {excluded} days. ({len(cleaned)} remaining)")
+            print(f"Dataset {i + 1} ({range_str}): Removed {excluded} days ({len(cleaned)} remaining).")
 
         print("-" * 30)
 
