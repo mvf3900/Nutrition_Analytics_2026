@@ -28,7 +28,7 @@ print("-" * 5 + " NUTRITION ANALYZER " + "-" * 5)
 
 # - Provide date range
 user_start_date = input("Start Date (MM/DD/YYYY): ")
-user_end_date = input("Start Date (MM/DD/YYYY): ")
+user_end_date = input("End Date (MM/DD/YYYY): ")
 #user_start_date = "01/09/2026"
 #user_end_date = "03/09/2026"
 
@@ -61,8 +61,8 @@ while True:
         # - Receive user date ranges
         split_dates = []
         while True:
-            d = input("Enter date range (MM/DD/YYYY - MM/DD/YYYY) or 'done': ")
-            if d == 'done':
+            d = input("Enter date range (MM/DD/YYYY - MM/DD/YYYY) or (1) for done: ")
+            if d == '1':
                 break
             split_dates.append(d)
 

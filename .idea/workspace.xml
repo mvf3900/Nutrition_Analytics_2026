@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="74ff9d48-759d-4648-8a58-58a686afd5c5" name="Changes" comment="Commit 13: Updated break dates function (and consequential functions) to accept multiple ranges.">
+    <list default="true" id="74ff9d48-759d-4648-8a58-58a686afd5c5" name="Changes" comment="Commit 14: Updated remove outlier function in engine and analyzer.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/analyzer_engine.py" beforeDir="false" afterPath="$PROJECT_DIR$/analyzer_engine.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/analyzer_interface.py" beforeDir="false" afterPath="$PROJECT_DIR$/analyzer_interface.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -213,7 +212,15 @@
       <option name="project" value="LOCAL" />
       <updated>1775336117950</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Commit 14: Updated remove outlier function in engine and analyzer.">
+      <option name="closed" value="true" />
+      <created>1775409020237</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1775409020237</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -230,6 +237,7 @@
     <MESSAGE value="Commit 11: Created analyzer_engine.py &amp; analyzer_interface.py. Scripts break Analysis_PUltimate. Updated and cleaned scripts." />
     <MESSAGE value="Commit 12: Completed function to remove outliers." />
     <MESSAGE value="Commit 13: Updated break dates function (and consequential functions) to accept multiple ranges." />
-    <option name="LAST_COMMIT_MESSAGE" value="Commit 13: Updated break dates function (and consequential functions) to accept multiple ranges." />
+    <MESSAGE value="Commit 14: Updated remove outlier function in engine and analyzer." />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit 14: Updated remove outlier function in engine and analyzer." />
   </component>
 </project>
