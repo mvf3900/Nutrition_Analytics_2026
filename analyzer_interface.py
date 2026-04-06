@@ -21,6 +21,7 @@ start_date = pd.to_datetime(df['Date'].iloc[0])
 
 # - Add column that gives week number
 df["Week_Number"] = ((df["Date"] - start_date).dt.days // 7) + 1
+df["Month"] = df['Date'].dt.to_period('M')
 
 # INTERACTIVE CONSOLE
 # 1. Initial program
@@ -60,14 +61,38 @@ while True:
         # Break dataframe by multiple ranges
         print(f"Input data runs from {analysis.start_str} - {analysis.end_str}")
 
-        # - Receive user date ranges
+        # - Receive user split option and initialize split list
+        breaker_choice = input("Enter split option:"
+                               "\n1. Manual"
+                               "\n2. Months"
+                               "\n3. Weeks\n")
         split_dates = []
-        while True:
-            d = input("Enter date range (MM/DD/YYYY - MM/DD/YYYY) or (1) for done: ")
-            if d == '1':
-                break
-            split_dates.append(d)
-
+        # - 1. Manual split
+        if breaker_choice == '1':
+            while True:
+                # - Receive user date ranges
+                d = input("Enter date range (MM/DD/YYYY - MM/DD/YYYY) or (1) for done: ")
+                if d == '1':
+                    break
+                split_dates.append(d)
+        # - 2. Split by Months
+        elif breaker_choice == '2':
+            unique_months = df['Month'].unique()
+            for period in unique_months:
+                month_data = analysis.df[analysis.df['Month'] == period]
+                start = month_data['Date'].min().strftime('%m/%d/%Y')
+                end = month_data['Date'].max().strftime('%m/%d/%Y')
+                split_dates.append(f"{start} - {end}")
+        # - 3. Split by Weeks
+        elif breaker_choice == '3':
+            unique_weeks = analysis.df['Week_Number'].unique()
+            for period in unique_weeks:
+                week_data = analysis.df[analysis.df['Week_Number'] == period]
+                start = week_data['Date'].min().strftime('%m/%d/%Y')
+                end = week_data['Date'].max().strftime('%m/%d/%Y')
+                split_dates.append(f"{start} - {end}")
+        else:
+            print("Invalid selection. Aborting breaker.")
         # - Send dates for further analysis
         analysis.break_date(split_dates)
     elif choice == '4':
