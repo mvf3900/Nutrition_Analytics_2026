@@ -9,14 +9,15 @@ from analyzer_engine import NutritionAnalyzer
 
 # INTRO
 # - Get, load, and manage data
-file_name = "data/Nutrition_Raw_Data_260329.csv"
+file_name = "data/Nutrition_Raw_Data_260405.csv"
 df = pd.read_csv(file_name)
 
 # - Convert date dividers
 df['Date'] = pd.to_datetime(df['Date'], format='%m/%d/%Y')
 
 # - Define Day 0
-start_date = pd.to_datetime("2025-12-29")
+# start_date = pd.to_datetime("2025-12-29")
+start_date = pd.to_datetime(df['Date'].iloc[0])
 
 # - Add column that gives week number
 df["Week_Number"] = ((df["Date"] - start_date).dt.days // 7) + 1
@@ -27,10 +28,10 @@ df["Week_Number"] = ((df["Date"] - start_date).dt.days // 7) + 1
 print("-" * 5 + " NUTRITION ANALYZER " + "-" * 5)
 
 # - Provide date range
-#user_start_date = input("Start Date (MM/DD/YYYY): ")
-#user_end_date = input("End Date (MM/DD/YYYY): ")
-user_start_date = "01/01/2026"
-user_end_date = "03/29/2026"
+user_start_date = input("Start Date (MM/DD/YYYY): ")
+user_end_date = input("End Date (MM/DD/YYYY): ")
+#user_start_date = "01/01/2026"
+#user_end_date = "03/31/2026"
 
 # - Initialize analyzer
 analysis = NutritionAnalyzer(user_start_date, user_end_date, df)
@@ -57,7 +58,7 @@ while True:
         analysis.show_data()
     elif choice == '3':
         # Break dataframe by multiple ranges
-        print(f"Current data runs from {analysis.start_str} - {analysis.end_str}")
+        print(f"Input data runs from {analysis.start_str} - {analysis.end_str}")
 
         # - Receive user date ranges
         split_dates = []

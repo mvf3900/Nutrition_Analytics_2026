@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="74ff9d48-759d-4648-8a58-58a686afd5c5" name="Changes" comment="Commit 15 : Added plot averages function. Visualizations included.">
+    <list default="true" id="74ff9d48-759d-4648-8a58-58a686afd5c5" name="Changes" comment="Commit 15.1: Created data and exports folders. Updated scripts to find data.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analyzer_interface.py" beforeDir="false" afterPath="$PROJECT_DIR$/analyzer_interface.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -235,7 +236,15 @@
       <option name="project" value="LOCAL" />
       <updated>1775416821694</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Commit 15.1: Created data and exports folders. Updated scripts to find data.">
+      <option name="closed" value="true" />
+      <created>1775418291988</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1775418291988</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -255,6 +264,7 @@
     <MESSAGE value="Commit 14: Updated remove outlier function in engine and analyzer." />
     <MESSAGE value="Commit 14.1 : Updated and fixed interface." />
     <MESSAGE value="Commit 15 : Added plot averages function. Visualizations included." />
-    <option name="LAST_COMMIT_MESSAGE" value="Commit 15 : Added plot averages function. Visualizations included." />
+    <MESSAGE value="Commit 15.1: Created data and exports folders. Updated scripts to find data." />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit 15.1: Created data and exports folders. Updated scripts to find data." />
   </component>
 </project>
