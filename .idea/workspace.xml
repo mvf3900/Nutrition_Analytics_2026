@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="74ff9d48-759d-4648-8a58-58a686afd5c5" name="Changes" comment="Commit 16: Updated final data and grammar in interface. Exported deficit_reflection for analysis of noise vs control days.">
+    <list default="true" id="74ff9d48-759d-4648-8a58-58a686afd5c5" name="Changes" comment="Commit 17: Updated breaker interface for weeks and months.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analyzer_engine.py" beforeDir="false" afterPath="$PROJECT_DIR$/analyzer_engine.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/analyzer_interface.py" beforeDir="false" afterPath="$PROJECT_DIR$/analyzer_interface.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -252,7 +253,15 @@
       <option name="project" value="LOCAL" />
       <updated>1775498470501</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Commit 17: Updated breaker interface for weeks and months.">
+      <option name="closed" value="true" />
+      <created>1775502200980</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1775502200980</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -274,6 +283,7 @@
     <MESSAGE value="Commit 15 : Added plot averages function. Visualizations included." />
     <MESSAGE value="Commit 15.1: Created data and exports folders. Updated scripts to find data." />
     <MESSAGE value="Commit 16: Updated final data and grammar in interface. Exported deficit_reflection for analysis of noise vs control days." />
-    <option name="LAST_COMMIT_MESSAGE" value="Commit 16: Updated final data and grammar in interface. Exported deficit_reflection for analysis of noise vs control days." />
+    <MESSAGE value="Commit 17: Updated breaker interface for weeks and months." />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit 17: Updated breaker interface for weeks and months." />
   </component>
 </project>

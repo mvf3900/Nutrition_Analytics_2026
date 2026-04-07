@@ -23,6 +23,12 @@ start_date = pd.to_datetime(df['Date'].iloc[0])
 df["Week_Number"] = ((df["Date"] - start_date).dt.days // 7) + 1
 df["Month"] = df['Date'].dt.to_period('M')
 
+# - Map choices for nutrition
+nutrition_map = {'1': 'Calories',
+                 '2': 'Protein',
+                 '3': 'Carbohydrate',
+                 '4': "Fat"}
+
 # INTERACTIVE CONSOLE
 # 1. Initial program
 # - Initialize interaction
@@ -46,6 +52,7 @@ while True:
     print("3. Break Dates")
     print("4. Remove Outliers")
     print("5. Plot Averages (Bar)")
+    print("6. Plot Data (Line)")
     print("9. Reset Data")
     print("0. Exit")
 
@@ -77,7 +84,7 @@ while True:
                 split_dates.append(d)
         # - 2. Split by Months
         elif breaker_choice == '2':
-            unique_months = df['Month'].unique()
+            unique_months = analysis.df['Month'].unique()
             for period in unique_months:
                 month_data = analysis.df[analysis.df['Month'] == period]
                 start = month_data['Date'].min().strftime('%m/%d/%Y')
@@ -97,11 +104,6 @@ while True:
         analysis.break_date(split_dates)
     elif choice == '4':
         # Remove nutrition outliers
-        # - Map choices
-        nutrition_map = {'1': 'Calories',
-                         '2': 'Protein',
-                         '3': 'Carbohydrate',
-                         '4': "Fat"}
         direction_map = {'1': 'Above',
                          '2': 'Below'}
 
@@ -127,6 +129,19 @@ while True:
             print("Invalid selection. Aborting filter.")
     elif choice == '5':
         analysis.plot_averages()
+    elif choice == '6':
+        # Nutrition selection
+        # - Receive nutrition and outlier amount
+        n_choice = input("Enter nutrition selection: "
+                         "\n1. Calories"
+                         "\n2. Protein"
+                         "\n3. Carbohydrate"
+                         "\n4. Fat\n")
+        if n_choice in nutrition_map:
+            # Passing the string 'Calories', 'Protein', etc.
+            analysis.plot_lines(nutrition_map[n_choice])
+        else:
+            print("Invalid selection. Returning to menu.")
     elif choice == '9':
         # Reset dataframe to original inputs
         analysis.reset_data()

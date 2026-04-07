@@ -231,6 +231,67 @@ class NutritionAnalyzer:
         plt.gcf().canvas.draw_idle()
         plt.gcf().canvas.flush_events()
 
+    # Function: Plot lines
+    def plot_lines(self, nutrition):
+        # 1. Identify which data to use
+        dfs_to_view = self.sub_ranges if self.sub_ranges else [self.df]
+
+        # 2. Setup Figure
+        plt.figure(figsize=(12, 6))
+
+        # - Aesthetics (Matching your bar chart style)
+        cmap = plt.get_cmap('GnBu')
+        colors = [cmap(i) for i in [0.5, 0.7, 0.9]]
+
+        # 3. Plot each dataset
+        for i, dataframe in enumerate(dfs_to_view):
+            if dataframe.empty:
+                continue
+
+            # 3.1. Get dataframe variables
+            # - Set data range label and color
+            range_label = self._get_date_range_str(dataframe)
+            color = colors[i % len(colors)]
+
+            # - Sort and save by date
+            plot_df = dataframe.sort_values('Date').copy()
+
+            # - Calculate averages
+            avg_val = plot_df[nutrition].mean()
+
+            # 3.2. Plot day data
+            # - Plot the line with markers
+            plt.plot(plot_df['Date'], plot_df[nutrition],
+                     label=range_label, color=color,
+                     marker='o', markersize=4, linewidth=2, alpha=0.9)
+
+            # 3.3. Plot Averages
+            # - Plot averages
+            plt.hlines(y=avg_val, xmin=plot_df['Date'].min(), xmax=plot_df['Date'].max(),
+                       color=color, linestyle='--', linewidth=2, alpha=0.5)
+
+            # - Display averages in legend
+            plt.plot([], [], color=color, linestyle='--', linewidth=2,
+                     label=f'   → Avg: {avg_val:.1f}')
+
+        # 4. Global Styling
+        plt.title(f'NUTRITION TREND | {nutrition.upper()}', loc='left',
+                  fontsize=14, weight='bold', pad=20)
+        plt.ylabel(f"{nutrition.upper()} {'(kcal)' if nutrition == 'Calories' else '(grams)'}",
+                   weight='bold')
+        plt.xlabel("DATE", weight='bold')
+
+        # - Maintenance Goal Line (The 1700 kcal / 120g Protein "Beacon")
+        # You can add logic here to draw a horizontal line for your current goals
+
+        plt.grid(True, linestyle=':', alpha=0.5)
+        plt.legend(loc='best', frameon=True, fontsize='small')
+        plt.tight_layout()
+
+        # 5. Non-blocking display (Matches your plot_averages style)
+        plt.show(block=False)
+        plt.pause(0.1)
+
     # Function: Reset data
     def reset_data(self):
         # 1. Retrieve original dataset
