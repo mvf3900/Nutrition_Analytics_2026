@@ -4,14 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="74ff9d48-759d-4648-8a58-58a686afd5c5" name="Changes" comment="Commit 19: Created version 2 of interface and engine. Interface includes Date functions.">
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+    <list default="true" id="74ff9d48-759d-4648-8a58-58a686afd5c5" name="Changes" comment="Commit 20: Cleaned folders. Updated break dates in interface to follow date functions">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Analysis.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Analysis_PUltimate.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/analyzer_engine.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/analyzer_interface.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/analyzer_interface_2.py" beforeDir="false" afterPath="$PROJECT_DIR$/analyzer_interface_2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analyzer_engine_2.py" beforeDir="false" afterPath="$PROJECT_DIR$/analyzer_engine_2.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -287,7 +282,15 @@
       <option name="project" value="LOCAL" />
       <updated>1775681982819</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Commit 20: Cleaned folders. Updated break dates in interface to follow date functions">
+      <option name="closed" value="true" />
+      <created>1775688329127</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1775688329127</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -312,6 +315,7 @@
     <MESSAGE value="Commit 17: Updated breaker interface for weeks and months." />
     <MESSAGE value="Commit 18: Small refining. Added Plot data function. Added pngs of plot data play." />
     <MESSAGE value="Commit 19: Created version 2 of interface and engine. Interface includes Date functions." />
-    <option name="LAST_COMMIT_MESSAGE" value="Commit 19: Created version 2 of interface and engine. Interface includes Date functions." />
+    <MESSAGE value="Commit 20: Cleaned folders. Updated break dates in interface to follow date functions" />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit 20: Cleaned folders. Updated break dates in interface to follow date functions" />
   </component>
 </project>

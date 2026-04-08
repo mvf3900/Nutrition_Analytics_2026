@@ -5,6 +5,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib
+from tabulate import tabulate
 
 # Set environment and style for graphs
 matplotlib.use('TkAgg')
@@ -45,19 +46,43 @@ class NutritionAnalyzer:
     # Function: Show summary (averages) of data
     def show_summary(self):
         print("-" * 5 + " SUMMARY " + "-" * 5)
+        # 1. Create a temporary list of dictionaries for this function
+        table_list = []
 
-        # - Utilize dataframe(s)
-        dfs_to_view = self.sub_ranges if self.sub_ranges else [self.df]
+        if not self.sub_ranges:
+            table_list.append({
+                'label': f"{self.start_str} - {self.end_str}",
+                'data': self.df
+            })
+        else:
+            for i, dataframe in enumerate(self.sub_ranges):
+                table_list.append({
+                    'label': self._get_date_range_str(dataframe),
+                    'data': dataframe
+                })
 
-        for i, dataframe in enumerate(dfs_to_view):
-            # 1. Identify range
-            range_str = self._get_date_range_str(dataframe)
-            print(f"Dataset {i + 1}: {range_str}")
+        # 2. Prepare table headers
+        headers = ["Dataset", "Dates", "Calories", "Protein", "Carbs", "Fat"]
+        table_data = []
 
-            # 2. Calculate and print stats
-            stats = dataframe[['Calories', 'Protein', 'Carbohydrate', 'Fat']].mean().round(0).astype(int)
-            print(stats.to_string())
-            print("-" * 20)
+        for i, entry in enumerate(table_list, 1):
+            df_segment = entry['data']
+            label = entry['label']
+
+            if not df_segment.empty:
+                # - Get mean
+                avg_cal = f"{df_segment['Calories'].mean():.1f}"
+                avg_pro = f"{df_segment['Protein'].mean():.1f}"
+                avg_carb = f"{df_segment['Carbohydrate'].mean():.1f}"
+                avg_fat = f"{df_segment['Fat'].mean():.1f}"
+
+                # - Table values
+                table_data.append([f"DS {i}", label, avg_cal, avg_pro, avg_carb, avg_fat])
+            else:
+                table_data.append([f"DS {i}", label, "N/A", "N/A", "N/A", "N/A"])
+
+        # - Print table
+        print(tabulate(table_data, headers=headers, tablefmt="plain", disable_numparse=True))
         print("-" * 30)
 
     # Function: Show raw data
