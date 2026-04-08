@@ -1,11 +1,10 @@
 #### 2026/04/02
-#### Analyzer Engine
-#### - Analysis_PUltimate Split 2
+#### Analyzer Engine - Version 2
 #### - Contains Interface functions
 
 
 import pandas as pd
-from analyzer_engine import NutritionAnalyzer
+from analyzer_engine_2 import NutritionAnalyzer
 
 # INTRO
 # - Get, load, and manage data
@@ -24,10 +23,37 @@ df["Week_Number"] = ((df["Date"] - start_date).dt.days // 7) + 1
 df["Month"] = df['Date'].dt.to_period('M')
 
 # - Map choices for nutrition
+# - Map choices for direction
 nutrition_map = {'1': 'Calories',
                  '2': 'Protein',
                  '3': 'Carbohydrate',
                  '4': "Fat"}
+direction_map = {'1': 'Above',
+                 '2': 'Below'}
+
+
+# DATE FUNCTIONS
+# Function: Format Date
+def date_formatter(user_date):
+    if len(user_date) == 10:
+        return user_date
+    elif len(user_date) == 6:
+        formatted_date = f"{user_date[:2]}/{user_date[2:4]}/20{user_date[4:]}"
+        return formatted_date
+    else:
+        return None
+
+
+# Function: Validate Date
+def validate_date(prompt):
+    while True:
+        raw_input = input(prompt)
+        formatted = date_formatter(raw_input)
+
+        if formatted is not None:
+            return formatted
+
+        print("Error: Input must be MMDDYY or MM/DD/YYYY. Try again.")
 
 # INTERACTIVE CONSOLE
 # 1. Initial program
@@ -35,10 +61,10 @@ nutrition_map = {'1': 'Calories',
 print("-" * 5 + " NUTRITION ANALYZER " + "-" * 5)
 
 # - Provide date range
-user_start_date = input("Start Date (MM/DD/YYYY): ")
-user_end_date = input("End Date (MM/DD/YYYY): ")
-#user_start_date = "01/01/2026"
-#user_end_date = "03/31/2026"
+user_start_date = validate_date("Start Date (MM/DD/YYYY): ")
+user_end_date = validate_date("End Date (MM/DD/YYYY): ")
+#user_start_date = "12/29/2025"
+#user_end_date = "04/05/2026"
 
 # - Initialize analyzer
 analysis = NutritionAnalyzer(user_start_date, user_end_date, df)
@@ -46,7 +72,7 @@ analysis = NutritionAnalyzer(user_start_date, user_end_date, df)
 # 2. Interface
 # - Provide analyzer options
 while True:
-    print("--- Analyzer Menu ---")
+    print("--- ANALYZER MENU ---")
     print("1. View Average(s)")
     print("2. View Raw Data")
     print("3. Break Dates")
@@ -59,10 +85,12 @@ while True:
     # - Receive user selection
     choice = input("Enter an option: ")
 
-    # - Respond to user selection
+    # 3. Respond to user selection
     if choice == '1':
+        # Shows averages of ranges
         analysis.show_summary()
     elif choice == '2':
+        # Shows data of ranges
         analysis.show_data()
     elif choice == '3':
         # Break dataframe by multiple ranges
@@ -104,9 +132,6 @@ while True:
         analysis.break_date(split_dates)
     elif choice == '4':
         # Remove nutrition outliers
-        direction_map = {'1': 'Above',
-                         '2': 'Below'}
-
         # - Receive nutrition and outlier amount
         n_choice = input("Enter nutrition selection: "
                          "\n1. Calories"
