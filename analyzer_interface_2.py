@@ -104,12 +104,22 @@ while True:
         split_dates = []
         # - 1. Manual split
         if breaker_choice == '1':
+            break_range_tracker = 1
             while True:
                 # - Receive user date ranges
-                d = input("Enter date range (MM/DD/YYYY - MM/DD/YYYY) or (1) for done: ")
-                if d == '1':
+                raw_start = input(f'Enter Range {break_range_tracker} Start or (1) for done: ')
+                if raw_start == '1':
                     break
-                split_dates.append(d)
+
+                break_start = date_formatter(raw_start)
+                raw_end = input(f"Enter Range {break_range_tracker} End: ")
+                break_end = date_formatter(raw_end)
+
+                if break_start and break_end:
+                    split_dates.append(f"{break_start} - {break_end}")
+                    break_range_tracker += 1
+                else:
+                    print("Invalid range dates. Try again.")
         # - 2. Split by Months
         elif breaker_choice == '2':
             unique_months = analysis.df['Month'].unique()
