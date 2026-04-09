@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="74ff9d48-759d-4648-8a58-58a686afd5c5" name="Changes" comment="Commit 21: Updated show summary function to present as spreadsheet.">
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+    <list default="true" id="74ff9d48-759d-4648-8a58-58a686afd5c5" name="Changes" comment="Commit 22: Updated date validator function to check csv range.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/analyzer_interface_2.py" beforeDir="false" afterPath="$PROJECT_DIR$/analyzer_interface_2.py" afterDir="false" />
     </list>
@@ -299,7 +298,15 @@
       <option name="project" value="LOCAL" />
       <updated>1775690709551</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Commit 22: Updated date validator function to check csv range.">
+      <option name="closed" value="true" />
+      <created>1775762647104</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1775762647104</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -326,6 +333,7 @@
     <MESSAGE value="Commit 19: Created version 2 of interface and engine. Interface includes Date functions." />
     <MESSAGE value="Commit 20: Cleaned folders. Updated break dates in interface to follow date functions" />
     <MESSAGE value="Commit 21: Updated show summary function to present as spreadsheet." />
-    <option name="LAST_COMMIT_MESSAGE" value="Commit 21: Updated show summary function to present as spreadsheet." />
+    <MESSAGE value="Commit 22: Updated date validator function to check csv range." />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit 22: Updated date validator function to check csv range." />
   </component>
 </project>

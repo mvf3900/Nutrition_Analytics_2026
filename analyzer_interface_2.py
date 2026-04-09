@@ -118,13 +118,12 @@ while True:
             break_range_tracker = 1
             while True:
                 # - Receive user date ranges
-                raw_start = input(f'Enter Range {break_range_tracker} Start or (1) for done: ')
+                raw_start = input(f'Press enter to continue or (1) for done: ')
                 if raw_start == '1':
                     break
 
-                break_start = date_formatter(raw_start)
-                raw_end = input(f"Enter Range {break_range_tracker} End: ")
-                break_end = date_formatter(raw_end)
+                break_start = validate_date(f"Enter Range {break_range_tracker} Start: ")
+                break_end = validate_date(f"Enter Range {break_range_tracker} End: ")
 
                 if break_start and break_end:
                     split_dates.append(f"{break_start} - {break_end}")
