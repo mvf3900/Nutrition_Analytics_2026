@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="74ff9d48-759d-4648-8a58-58a686afd5c5" name="Changes" comment="Commit 20: Cleaned folders. Updated break dates in interface to follow date functions">
+    <list default="true" id="74ff9d48-759d-4648-8a58-58a686afd5c5" name="Changes" comment="Commit 21: Updated show summary function to present as spreadsheet.">
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/analyzer_engine_2.py" beforeDir="false" afterPath="$PROJECT_DIR$/analyzer_engine_2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analyzer_interface_2.py" beforeDir="false" afterPath="$PROJECT_DIR$/analyzer_interface_2.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -290,7 +291,15 @@
       <option name="project" value="LOCAL" />
       <updated>1775688329127</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Commit 21: Updated show summary function to present as spreadsheet.">
+      <option name="closed" value="true" />
+      <created>1775690709551</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1775690709551</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -316,6 +325,7 @@
     <MESSAGE value="Commit 18: Small refining. Added Plot data function. Added pngs of plot data play." />
     <MESSAGE value="Commit 19: Created version 2 of interface and engine. Interface includes Date functions." />
     <MESSAGE value="Commit 20: Cleaned folders. Updated break dates in interface to follow date functions" />
-    <option name="LAST_COMMIT_MESSAGE" value="Commit 20: Cleaned folders. Updated break dates in interface to follow date functions" />
+    <MESSAGE value="Commit 21: Updated show summary function to present as spreadsheet." />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit 21: Updated show summary function to present as spreadsheet." />
   </component>
 </project>

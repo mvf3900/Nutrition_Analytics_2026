@@ -1,4 +1,4 @@
-#### 2026/04/02
+#### 2026/04/08
 #### Analyzer Engine - Version 2
 #### - Contains Interface functions
 
@@ -14,9 +14,9 @@ df = pd.read_csv(file_name)
 # - Convert date dividers
 df['Date'] = pd.to_datetime(df['Date'], format='%m/%d/%Y')
 
-# - Define Day 0
-# start_date = pd.to_datetime("2025-12-29")
+# - Define Range Ends
 start_date = pd.to_datetime(df['Date'].iloc[0])
+end_date = pd.to_datetime(df['Date'].iloc[-1])
 
 # - Add column that gives week number and month
 df["Week_Number"] = ((df["Date"] - start_date).dt.days // 7) + 1
@@ -45,15 +45,26 @@ def date_formatter(user_date):
 
 
 # Function: Validate Date
-def validate_date(prompt):
+def validate_date(prompt, s_range=start_date, e_range=end_date):
     while True:
         raw_input = input(prompt)
         formatted = date_formatter(raw_input)
 
+        # Check Format
         if formatted is not None:
-            return formatted
+            check_date = pd.to_datetime(formatted, format='%m/%d/%Y')
 
-        print("Error: Input must be MMDDYY or MM/DD/YYYY. Try again.")
+            # Check Range
+            if s_range <= check_date <= e_range:
+                # Break loop for successful check
+                return formatted
+            else:
+                # Error messages
+                print(f"Error: Date {formatted} is out of range.")
+                print(f"*** CSV Range: {s_range.strftime('%m/%d/%Y')} - {e_range.strftime('%m/%d/%Y')}.")
+        else:
+            print("Error: Input must be MMDDYY or MM/DD/YYYY. Try again.")
+
 
 # INTERACTIVE CONSOLE
 # 1. Initial program
