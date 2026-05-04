@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="74ff9d48-759d-4648-8a58-58a686afd5c5" name="Changes" comment="Commit 22: Updated date validator function to check csv range.">
+    <list default="true" id="74ff9d48-759d-4648-8a58-58a686afd5c5" name="Changes" comment="Commit 23: Updated date breaker function with validator.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/analyzer_interface_2.py" beforeDir="false" afterPath="$PROJECT_DIR$/analyzer_interface_2.py" afterDir="false" />
     </list>
@@ -62,6 +62,11 @@
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/marco/Documents/MVF/Coding_Projects/Nutrition&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.customizations&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
+      &quot;TEXT&quot;
+    ]
   }
 }</component>
   <component name="RecentsManager">
@@ -306,7 +311,15 @@
       <option name="project" value="LOCAL" />
       <updated>1775762647104</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="Commit 23: Updated date breaker function with validator.">
+      <option name="closed" value="true" />
+      <created>1775763878021</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1775763878021</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -334,6 +347,7 @@
     <MESSAGE value="Commit 20: Cleaned folders. Updated break dates in interface to follow date functions" />
     <MESSAGE value="Commit 21: Updated show summary function to present as spreadsheet." />
     <MESSAGE value="Commit 22: Updated date validator function to check csv range." />
-    <option name="LAST_COMMIT_MESSAGE" value="Commit 22: Updated date validator function to check csv range." />
+    <MESSAGE value="Commit 23: Updated date breaker function with validator." />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit 23: Updated date breaker function with validator." />
   </component>
 </project>
