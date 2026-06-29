@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="74ff9d48-759d-4648-8a58-58a686afd5c5" name="Changes" comment="Commit 23: Updated date breaker function with validator.">
+    <list default="true" id="74ff9d48-759d-4648-8a58-58a686afd5c5" name="Changes" comment="Commit 24: Updated data. Includes maintenance data: 040626 - 050326.">
+      <change afterPath="$PROJECT_DIR$/data_play.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/analyzer_interface_2.py" beforeDir="false" afterPath="$PROJECT_DIR$/analyzer_interface_2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nutrition_history.csv" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,6 +73,9 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\marco\Documents\MVF\Coding_Projects\Nutrition" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\marco\Documents\MVF\Coding_Projects\Nutrition" />
     </key>
   </component>
@@ -319,11 +324,18 @@
       <option name="project" value="LOCAL" />
       <updated>1775763878021</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="Commit 24: Updated data. Includes maintenance data: 040626 - 050326.">
+      <option name="closed" value="true" />
+      <created>1777909113065</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1777909113065</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Initial commit: Calculated Jan-March avg calories (1601 kcal)" />
     <MESSAGE value="Commit 2: Added dataframe of nutrient averages. Future: Get dataframe ready for visualizations." />
     <MESSAGE value="Commit 3: Refined Monthly Average Data Table" />
     <MESSAGE value="Commit 4: Created Weekly Average Data Table. Start Date: 2025-12-29." />
@@ -348,6 +360,7 @@
     <MESSAGE value="Commit 21: Updated show summary function to present as spreadsheet." />
     <MESSAGE value="Commit 22: Updated date validator function to check csv range." />
     <MESSAGE value="Commit 23: Updated date breaker function with validator." />
-    <option name="LAST_COMMIT_MESSAGE" value="Commit 23: Updated date breaker function with validator." />
+    <MESSAGE value="Commit 24: Updated data. Includes maintenance data: 040626 - 050326." />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit 24: Updated data. Includes maintenance data: 040626 - 050326." />
   </component>
 </project>
